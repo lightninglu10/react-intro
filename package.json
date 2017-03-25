@@ -1,0 +1,36 @@
+{
+  "name": "react-intro",
+  "version": "1.0.0",
+  "description": "intro project to reactJS",
+  "main": "server.js",
+  "scripts": {
+    "test": "mocha",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lightninglu10/react-intro.git"
+  },
+  "author": "Patrick Lu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lightninglu10/react-intro/issues"
+  },
+  "homepage": "https://github.com/lightninglu10/react-intro#readme",
+  "dependencies": {
+    "clean-webpack-plugin": "^0.1.16",
+    "copy-webpack-plugin": "^4.0.1",
+    "extract-text-webpack-plugin": "^2.1.0",
+    "html-webpack-plugin": "^2.28.0",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "react-redux": "^5.0.3",
+    "react-router": "^4.0.0",
+    "react-router-redux": "^4.0.8",
+    "redux": "^3.6.0",
+    "redux-logger": "^3.0.0",
+    "redux-thunk": "^2.2.0",
+    "webpack": "^2.3.2",
+    "webpack-dev-server": "^2.4.2"
+  }
+}
