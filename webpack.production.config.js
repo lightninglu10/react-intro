@@ -50,7 +50,7 @@ module.exports = {
     }),
     new webpack.optimize.UglifyJsPlugin(),
     new HtmlWebpackPlugin({
-      template: 'client/index.tpl.html',
+      template: 'client/index.html',
       filename: 'index.html',
       inject: 'body'
     }),

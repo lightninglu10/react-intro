@@ -45,11 +45,11 @@ module.exports = {
     new ExtractTextPlugin('[name]-[hash].min.css'),
     new CopyWebpackPlugin([{ from: 'client/assets' }]),
     new HtmlWebpackPlugin({
-      template: 'client/index.tpl.html',
+      template: 'client/index.html',
       filename: 'index.html',
       inject: 'body' }),
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('development'),
     }),

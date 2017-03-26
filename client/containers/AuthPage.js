@@ -8,6 +8,7 @@ import React from 'react';
 
 // Redux
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 // LoginForm
 import LoginForm from '../components/LoginForm';
@@ -41,8 +42,9 @@ class AuthPage extends React.Component {
         return (
             <div className="auth">
                 <div className="login">
-                    <LoginForm loginFunction={} />
+                    <LoginForm loginFunction={loginActions.login} />
                 </div>
+                Hello World!
             </div>
         );
     }

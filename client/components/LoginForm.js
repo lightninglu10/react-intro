@@ -6,9 +6,6 @@
 
 import React from 'react';
 
-// LoginForm
-import LoginForm from '../components/LoginForm';
-
 class LoginForm extends React.Component {
 
     constructor(props) {

@@ -18,10 +18,10 @@ function loginSuccessful(username) {
 
 // These are all of the functions that you can utilize
 module.exports = {
-    login: function login() {
+    login: function login(data) {
         // Dispatch tells Redux to send to store
         return dispatch => {
-            return fetch(API.LOGIN, API.POST_CONFIG)
+            return fetch(API.LOGIN, API.POST_CONFIG(data))
             .then(Helpers.checkStatus)
             .then(Helpers.parseJSON)
             .then((json) => {

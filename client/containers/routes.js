@@ -12,7 +12,6 @@ import { connect } from 'react-redux';
 
 // Router
 import { applyRouterMiddleware, Router, Route, IndexRoute, Redirect} from 'react-router';
-import useScroll from 'react-router-scroll';
 
 // Containers
 import AuthPage from '../containers/AuthPage.js'
