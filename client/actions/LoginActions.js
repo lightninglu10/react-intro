@@ -12,7 +12,7 @@ import Helpers from './helpers';
 function loginSuccessful(username, isLoggedIn) {
     return {
         type: types.LOGIN_SUCCESSFUL,
-        isLoggedIn: isLoggedIn
+        isLoggedIn: isLoggedIn,
         username: username,
     }
 }
