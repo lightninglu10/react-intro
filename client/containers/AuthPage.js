@@ -38,7 +38,7 @@ class AuthPage extends React.Component {
         // This is where you place your HTML. Inside of here goes components and other HTML elements
 
         // this.props is a dictionary, so var { loginActions } is the same thing as var loginActions = this.props['loginActions'];
-        var { loginActions } = this.props;
+        var { user, loginActions } = this.props;
         return (
             <div className="auth">
                 <div className="login">
@@ -50,6 +50,15 @@ class AuthPage extends React.Component {
     }
 }
 
+/*****************
+ * REDUX SECTION *
+ *****************/
+
+function mapStateToProps(state) {
+    return {
+        user: state.user,
+    }
+}
 
 function mapDispatchToProps(dispatch) {
     return {
@@ -57,4 +66,4 @@ function mapDispatchToProps(dispatch) {
     }
 }
 
-export default connect(null, mapDispatchToProps)(AuthPage);
+export default connect(mapStateToProps, mapDispatchToProps)(AuthPage);
