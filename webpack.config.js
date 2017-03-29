@@ -16,12 +16,12 @@ var sassLoaders = [
 module.exports = {
   devtool: 'source-map',
   entry: [
-    'webpack-dev-server/client?http://localhost:3000',
-    'webpack/hot/only-dev-server',
+    'react-hot-loader/patch',
+    'webpack-hot-middleware/client?path=http://localhost:3000/__webpack_hmr',
     './client/index.dev.js'
   ],
   output: {
-    path: __dirname + '/dist',
+    path: path.join(__dirname, 'dist'),
     filename: '[name]-[hash].js',
     publicPath: 'http://localhost:3000/',
   },
@@ -30,13 +30,17 @@ module.exports = {
       { test: /\.css$/, loader: "style-loader!css-loader" },
       {
         test: /\.jsx?$/,
-        include: __dirname + '/client',
+        include: path.join(__dirname, 'client'),
         loader: "babel-loader",
+        query: {
+          presets: ['react', 'latest', 'stage-2'],
+          "plugins": ["transform-decorators-legacy", "react-hot-loader/babel"]
+        }
       },
       {
         test: /\.scss$/,
         loader: ExtractTextPlugin.extract({fallback: 'style-loader', use: sassLoaders.join('!')})
-      }
+      },
     ]
   },
   plugins: [
@@ -52,6 +56,6 @@ module.exports = {
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('development'),
-    }),
+    })
   ],
 };
