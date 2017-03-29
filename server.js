@@ -33,6 +33,18 @@ if (env !== 'production') {
         res.end();
     });
 
+     // Reload server-side code without affecting Webpack
+    const chokidar = require('chokidar');
+    const watcher = chokidar.watch('./backend');
+    watcher.on('ready', function() {
+        watcher.on('all', function() {
+            console.log("Reload /api server...");
+            Object.keys(require.cache).forEach(function(id) {
+                if (/\/backend\//.test(id)) delete require.cache[id];
+            });
+        });
+    });
+
 } else {
     app.use('/static', express.static(__dirname + '/dist'));
     app.get('*', function response(req, res) {

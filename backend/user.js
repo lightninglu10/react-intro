@@ -35,11 +35,9 @@ module.exports = bookshelf.Model.extend({
 
     serializeForSelf: function() {
         return _.pick(this.attributes, ['id',
-                                        'chat_id',
-                                        'default_nickname',
+                                        'username',
                                         'email',
-                                        'created_at',
-                                        'nando_pro',]);
+                                        'created_at',,]);
     },
 
     update: function(attrs) {
@@ -60,7 +58,7 @@ module.exports = bookshelf.Model.extend({
     // as a side-effect this also bcrypts pw
     validate: function() {
         return new Promise((resolve, reject) => {
-            var required_attrs = ['default_nickname', 'email'];
+            var required_attrs = ['email'];
             _.each(required_attrs, attr => {
                 if(!this.get(attr)) {
                     reject(new Error(attr + ' is required'));
@@ -76,10 +74,6 @@ module.exports = bookshelf.Model.extend({
                     reject(new Error('password must be at least 6 chars'));
                     return
                 }
-            }
-
-            if(!this.get('chat_id')) {
-                this.set('chat_id', chance.md5());
             }
 
             resolve();

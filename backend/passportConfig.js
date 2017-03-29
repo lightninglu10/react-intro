@@ -1,4 +1,4 @@
-var passport = require('passport')
+var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var FacebookTokenStrategy = require('passport-facebook-token');
 var User     = require('./user');
@@ -55,37 +55,6 @@ passport.use(new FacebookTokenStrategy({
     }
 ));
 
-// setup the strategy using defaults  
-passport.use(new SlackStrategy({
-    clientID: SlackConfig.CLIENT_ID,
-    clientSecret: SlackConfig.CLIENT_SECRET
-  }, (accessToken, refreshToken, profile, done) => {
-
-    // asynchronous
-    process.nextTick(() => {
-        SlackUser.where({ 'slack_id' : profile.user.id }).fetch().then(slackUser => {
-            if (slackUser) {
-                User.where({'slackUser_id' : slackUser.get('id')}).fetch().then(user => {
-                    return done(null, user); //user found, return that user
-                });
-            } else {
-                var attrs = {
-                    access_token: accessToken,
-                    slack_id: profile.user.id,
-                    name: profile.user.name,
-                    email: profile.user.email,
-                    team_id: profile.team.id,
-                    team_name: profile.team.name,
-                }
-
-                SlackUser.create(attrs).then(user => {
-                    return done(null, user);
-                });
-            }
-        })
-    })
-  }
-));
 
 passport.serializeUser(function(user, done) {
     done(null, user.id);
