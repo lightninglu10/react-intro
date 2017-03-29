@@ -9,11 +9,11 @@ import API from '../config/api';
 import Helpers from './helpers';
 
 // action functions
-function loginSuccessful(username, isLoggedIn) {
+function loginSuccessful(email, isLoggedIn) {
     return {
         type: types.LOGIN_SUCCESSFUL,
         isLoggedIn: isLoggedIn,
-        username: username,
+        email: email,
     }
 }
 
@@ -25,7 +25,7 @@ module.exports = {
         .then(Helpers.checkStatus)
         .then(Helpers.parseJSON)
         .then((json) => {
-            return dispatch(loginSuccessful(json.username, json.loggedIn));
+            return dispatch(loginSuccessful(json.email, true));
         });
     },
 
@@ -36,7 +36,7 @@ module.exports = {
             .then(Helpers.checkStatus)
             .then(Helpers.parseJSON)
             .then((json) => {
-                return dispatch(loginSuccessful(json.username, true));
+                return dispatch(loginSuccessful(json.email, true));
             });
         }
     }

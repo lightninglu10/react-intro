@@ -8,7 +8,7 @@ import types from '../config/action-types';
 const initialState = {
     isLoggedIn: false,
     isFacebookFetching: false,
-    username: '',
+    email: '',
 }
 
 module.exports = function userReducer(state = initialState, action) {
