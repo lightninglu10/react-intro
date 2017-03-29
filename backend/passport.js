@@ -3,10 +3,7 @@ var LocalStrategy = require('passport-local').Strategy;
 var FacebookTokenStrategy = require('passport-facebook-token');
 var User     = require('./user');
 var FacebookUser = require('./facebookUser');
-var SlackUser = require('./slackUser');
 var FacebookConfig = require('./fb');
-var SlackStrategy = require('passport-slack').Strategy;
-var SlackConfig = require('./slack');
 
 
 passport.use(new LocalStrategy({
