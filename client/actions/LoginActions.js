@@ -21,12 +21,17 @@ function loginSuccessful(email, isLoggedIn) {
 module.exports = {
     getLogin: function getLogin() {
         // Getting if we are logged in or not. If we are, update the Redux user to the logged in data.
-        return fetch(API.Login, API.GET_CONFIG)
-        .then(Helpers.checkStatus)
-        .then(Helpers.parseJSON)
-        .then((json) => {
-            return dispatch(loginSuccessful(json.email, true));
-        });
+        return dispatch => {
+            return fetch(API.Login, API.GET_CONFIG)
+            .then(Helpers.checkStatus)
+            .then(Helpers.parseJSON)
+            .then((json) => {
+                return dispatch(loginSuccessful(json.email, true));
+            })
+            .catch((error) => {
+                return dispatch(loginSuccessful('', false));
+            });
+        }
     },
 
     login: function login(data) {
@@ -37,6 +42,9 @@ module.exports = {
             .then(Helpers.parseJSON)
             .then((json) => {
                 return dispatch(loginSuccessful(json.email, true));
+            })
+            .catch((error) => {
+                return dispatch(loginSuccessful('', false));
             });
         }
     }
